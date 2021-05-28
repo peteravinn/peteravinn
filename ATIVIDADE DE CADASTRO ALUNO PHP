@@ -1,16 +1,22 @@
-### Hi there 👋
+<?php
+//PAGINA DE CADASTRO ALUNO 
 
-<!--
-**peteravinn/peteravinn** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
-Here are some ideas to get you started:
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname	= "atividade";
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+try{
+$conn = new PDO("mysql:host=$servername;dbname=$dbname=charset=utf8", $username, $password,);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $sql = "INSERT INTO dados (Aluno, Disciplina, Nota_1, Nota_2)
+  VALUES ('Andre', 'Web', 10, 10)";
+  // use exec() because no results are returned
+  $conn->exec($sql);
+  echo "Usuário cadastrado com sucesso!";
+} catch(PDOException $e) {
+  echo $sql . "<br>" . $e->getMessage();
+}
+?>
